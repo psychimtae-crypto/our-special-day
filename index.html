@@ -9,7 +9,6 @@
 
     <title>Our Special Day</title>
 
-    <!-- Elegant Script Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
 
     <link rel="preconnect"
@@ -19,7 +18,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Allura&display=swap"
           rel="stylesheet">
 
-
     <style>
 
         * {
@@ -28,7 +26,6 @@
             padding: 0;
         }
 
-
         html,
         body {
             width: 100%;
@@ -36,42 +33,31 @@
             overflow: hidden;
         }
 
-
         body {
             font-family: Georgia, serif;
             background: black;
         }
-
 
         /* =========================
            COUNTDOWN PAGE
         ========================= */
 
         #countdownPage {
-
             position: fixed;
-
             inset: 0;
-
             width: 100%;
             height: 100%;
 
             background-image: url("first.jpg");
-
             background-size: cover;
-
             background-position: center;
 
             display: flex;
-
             flex-direction: column;
-
             justify-content: center;
-
             align-items: center;
 
             text-align: center;
-
             color: white;
 
             z-index: 2;
@@ -81,104 +67,69 @@
                 transform 1.5s ease;
         }
 
-
         #countdownPage.hide {
-
             opacity: 0;
-
             transform: scale(1.08);
-
             pointer-events: none;
         }
 
-
         #title {
-
             font-size: 48px;
-
             margin-bottom: 30px;
 
-            text-shadow:
-                0 2px 10px black;
-
+            text-shadow: 0 2px 10px black;
             letter-spacing: 2px;
         }
 
-
         #timer {
-
             display: flex;
-
             gap: 25px;
-
             font-size: 28px;
 
-            text-shadow:
-                0 2px 10px black;
+            text-shadow: 0 2px 10px black;
         }
 
-
         .time-box {
-
             display: flex;
-
             flex-direction: column;
-
             align-items: center;
         }
 
-
         .number {
-
             font-size: 45px;
-
             font-weight: bold;
         }
 
-
         .label {
-
             font-size: 15px;
-
             margin-top: 5px;
 
             text-transform: uppercase;
-
             letter-spacing: 2px;
         }
-
 
         /* =========================
            FINAL PAGE
         ========================= */
 
         #finalPage {
-
             position: fixed;
-
             inset: 0;
-
             width: 100%;
             height: 100%;
 
             background-image: url("final.jpg");
-
             background-size: cover;
-
             background-position: center;
 
             display: flex;
-
             justify-content: center;
-
             align-items: center;
 
             text-align: center;
-
             padding: 40px;
 
             opacity: 0;
-
             transform: scale(1.08);
 
             transition:
@@ -188,31 +139,26 @@
             z-index: 1;
         }
 
-
         #finalPage.show {
-
             opacity: 1;
-
             transform: scale(1);
         }
-
 
         /* =========================
            MESSAGE
         ========================= */
 
         #message {
+            position: relative;
+            z-index: 3;
 
             max-width: 900px;
-
             max-height: 85vh;
 
             overflow-y: auto;
 
             font-family: "Allura", cursive;
-
             font-size: 38px;
-
             line-height: 1.5;
 
             color: #800020;
@@ -227,41 +173,28 @@
             transition:
                 opacity 1s ease,
                 transform 1s ease;
-
-            position: relative;
-
-            z-index: 5;
         }
-
 
         #message.show {
-
             opacity: 1;
-
             transform: translateY(0);
         }
-
 
         /* =========================
            BIG FIRST LETTER
         ========================= */
 
         .first-letter {
-
             color: black;
-
             font-size: 1.65em;
-
             font-weight: bold;
         }
-
 
         /* =========================
            EMOJIS
         ========================= */
 
         .emoji {
-
             font-family:
                 "Segoe UI Emoji",
                 "Apple Color Emoji",
@@ -269,107 +202,72 @@
                 sans-serif;
 
             font-size: 1em;
-
             color: initial;
-
             margin-left: 5px;
         }
-
-
-        /* =========================
-           MUSIC BUTTON
-        ========================= */
-
-        #musicButton {
-
-            position: fixed;
-
-            bottom: 25px;
-
-            left: 50%;
-
-            transform: translateX(-50%);
-
-            z-index: 20;
-
-            padding: 12px 24px;
-
-            border: none;
-
-            border-radius: 30px;
-
-            background: rgba(0, 0, 0, 0.65);
-
-            color: white;
-
-            font-size: 16px;
-
-            cursor: pointer;
-
-            backdrop-filter: blur(5px);
-
-            box-shadow:
-                0 4px 15px rgba(0,0,0,0.3);
-        }
-
-
-        #musicButton:hover {
-
-            background: rgba(0, 0, 0, 0.8);
-        }
-
 
         /* =========================
            FLOATING HEARTS
         ========================= */
 
-        .heart {
-
+        #heartContainer {
             position: fixed;
+            inset: 0;
 
-            bottom: -40px;
-
-            font-size: 25px;
+            width: 100%;
+            height: 100%;
 
             pointer-events: none;
+            overflow: hidden;
 
-            z-index: 10;
-
-            animation:
-                floatHeart 4s linear forwards;
+            z-index: 2;
         }
 
+        .floating-heart {
+            position: absolute;
+            bottom: -50px;
 
-        @keyframes floatHeart {
+            font-size: 22px;
+
+            animation:
+                heartFloat 4s ease-out forwards;
+
+            opacity: 0;
+        }
+
+        @keyframes heartFloat {
 
             0% {
-
                 transform:
                     translateY(0)
-                    scale(0.5)
+                    scale(0.3)
                     rotate(0deg);
 
                 opacity: 0;
             }
 
-
             15% {
-
                 opacity: 1;
             }
 
+            50% {
+                transform:
+                    translateY(-45vh)
+                    scale(1)
+                    rotate(15deg);
+
+                opacity: 0.9;
+            }
 
             100% {
-
                 transform:
-                    translateY(-100vh)
-                    scale(1.3)
-                    rotate(25deg);
+                    translateY(-105vh)
+                    scale(0.7)
+                    rotate(-15deg);
 
                 opacity: 0;
             }
         }
-
 
         /* =========================
            MOBILE
@@ -378,48 +276,26 @@
         @media (max-width: 600px) {
 
             #title {
-
                 font-size: 34px;
             }
 
-
             #timer {
-
                 gap: 12px;
-
                 font-size: 20px;
             }
 
-
             .number {
-
                 font-size: 32px;
             }
 
-
             .label {
-
                 font-size: 11px;
             }
 
-
             #message {
-
                 font-size: 30px;
-
                 max-width: 95%;
             }
-
-
-            #musicButton {
-
-                bottom: 15px;
-
-                font-size: 14px;
-
-                padding: 10px 20px;
-            }
-
         }
 
     </style>
@@ -431,26 +307,25 @@
 
 
     <!-- =========================
-         MUSIC
+         BACKGROUND MUSIC
     ========================= -->
 
-    <audio id="backgroundMusic" loop>
+    <audio
+        id="backgroundMusic"
+        loop
+        preload="auto">
 
-        <!-- CHANGE THIS IF YOUR FILE HAS A DIFFERENT NAME -->
+        <!-- YOUR FILE IS CALLED song.mp3 -->
 
-        <source src="mp3" type="audio/mpeg">
+        <source
+            src="song.mp3"
+            type="audio/mpeg">
 
     </audio>
 
 
-    <button id="musicButton">
-        🎵 Play Music
-    </button>
-
-
-
     <!-- =========================
-         FIRST PAGE
+         COUNTDOWN PAGE
     ========================= -->
 
     <div id="countdownPage">
@@ -459,12 +334,13 @@
             Our Special Day
         </div>
 
-
         <div id="timer">
 
             <div class="time-box">
 
-                <div class="number" id="days">
+                <div
+                    class="number"
+                    id="days">
                     00
                 </div>
 
@@ -477,7 +353,9 @@
 
             <div class="time-box">
 
-                <div class="number" id="hours">
+                <div
+                    class="number"
+                    id="hours">
                     00
                 </div>
 
@@ -490,7 +368,9 @@
 
             <div class="time-box">
 
-                <div class="number" id="minutes">
+                <div
+                    class="number"
+                    id="minutes">
                     00
                 </div>
 
@@ -503,7 +383,9 @@
 
             <div class="time-box">
 
-                <div class="number" id="seconds">
+                <div
+                    class="number"
+                    id="seconds">
                     00
                 </div>
 
@@ -518,21 +400,20 @@
     </div>
 
 
-
     <!-- =========================
          FINAL PAGE
     ========================= -->
 
     <div id="finalPage">
 
+        <div id="heartContainer"></div>
+
         <div id="message"></div>
 
     </div>
 
 
-
     <script>
-
 
         /* =========================
            MUSIC
@@ -544,34 +425,48 @@
             );
 
 
-        const musicButton =
-            document.getElementById(
-                "musicButton"
-            );
+        function startMusic() {
+
+            music.volume = 0.7;
+
+            music.play()
+                .then(function () {
+
+                    console.log(
+                        "Music started!"
+                    );
+
+                })
+                .catch(function (error) {
+
+                    console.log(
+                        "Music could not start:",
+                        error
+                    );
+
+                });
+
+        }
 
 
-        musicButton.addEventListener(
+        /*
+           Phones can block autoplay.
+
+           This makes the first tap anywhere
+           on the page start the music.
+        */
+
+        document.addEventListener(
             "click",
             function () {
 
-                if (music.paused) {
+                startMusic();
 
-                    music.play();
-
-                    musicButton.textContent =
-                        "⏸ Pause Music";
-
-                } else {
-
-                    music.pause();
-
-                    musicButton.textContent =
-                        "🎵 Play Music";
-                }
-
+            },
+            {
+                once: true
             }
         );
-
 
 
         /* =========================
@@ -583,6 +478,7 @@
             {
                 text:
                     "Can you believe it? It's been 1 year of you putting up with me and me putting up with you ",
+
                 emoji:
                     "laugh-heart"
             },
@@ -591,6 +487,7 @@
             {
                 text:
                     "Nov 2nd - Our first anniversary together, Yassine.",
+
                 emoji:
                     ""
             },
@@ -599,6 +496,7 @@
             {
                 text:
                     "Honestly, it's been the best year of my life. You are my favorite silly person, my safe place, and my biggest headache in the best way.",
+
                 emoji:
                     ""
             },
@@ -607,6 +505,7 @@
             {
                 text:
                     "One year down, forever to go?",
+
                 emoji:
                     ""
             },
@@ -615,12 +514,12 @@
             {
                 text:
                     "I love you so much. Happy 1st anniversary, my king ",
+
                 emoji:
                     "crown"
             }
 
         ];
-
 
 
         /* =========================
@@ -630,13 +529,18 @@
         function getEmoji(type) {
 
             const emoji =
-                document.createElement("span");
+                document.createElement(
+                    "span"
+                );
 
             emoji.className =
                 "emoji";
 
 
-            if (type === "laugh-heart") {
+            if (
+                type ===
+                "laugh-heart"
+            ) {
 
                 emoji.textContent =
                     String.fromCodePoint(
@@ -644,92 +548,120 @@
                         0x2764,
                         0xFE0F
                     );
+
             }
 
 
-            if (type === "crown") {
+            if (
+                type ===
+                "crown"
+            ) {
 
                 emoji.textContent =
                     String.fromCodePoint(
                         0x1F451
                     );
+
             }
 
 
             return emoji;
-        }
 
+        }
 
 
         /* =========================
            FLOATING HEARTS
         ========================= */
 
+        const heartContainer =
+            document.getElementById(
+                "heartContainer"
+            );
+
+
+        let heartInterval;
+
+
         function createHeart() {
 
             const heart =
-                document.createElement("div");
-
+                document.createElement(
+                    "div"
+                );
 
             heart.className =
-                "heart";
+                "floating-heart";
+
+
+            const hearts = [
+                "❤️",
+                "💗",
+                "💕",
+                "💖",
+                "💘"
+            ];
 
 
             heart.textContent =
-                String.fromCodePoint(
-                    0x2764,
-                    0xFE0F
-                );
+                hearts[
+                    Math.floor(
+                        Math.random()
+                        * hearts.length
+                    )
+                ];
 
 
             heart.style.left =
-                Math.random() * 100 + "vw";
+                Math.random() *
+                100 +
+                "%";
 
 
             heart.style.fontSize =
-                (15 + Math.random() * 25) + "px";
+                (
+                    16 +
+                    Math.random() * 22
+                ) +
+                "px";
 
 
             heart.style.animationDuration =
-                (3 + Math.random() * 3) + "s";
+                (
+                    3 +
+                    Math.random() * 3
+                ) +
+                "s";
 
 
-            document.body.appendChild(
+            heartContainer.appendChild(
                 heart
             );
 
 
-            setTimeout(function () {
+            setTimeout(
+                function () {
 
-                heart.remove();
+                    heart.remove();
 
-            }, 6000);
+                },
+                6500
+            );
 
         }
-
 
 
         function startHearts() {
 
-            for (
-                let i = 0;
-                i < 12;
-                i++
-            ) {
+            createHeart();
 
-                setTimeout(
+            heartInterval =
+                setInterval(
                     createHeart,
-                    i * 250
+                    500
                 );
-            }
 
-
-            setInterval(
-                createHeart,
-                700
-            );
         }
-
 
 
         /* =========================
@@ -758,6 +690,7 @@
                 ) {
 
                     return;
+
                 }
 
 
@@ -786,8 +719,9 @@
 
 
                 const words =
-                    sentence.text.split(" ");
-
+                    sentence.text.split(
+                        " "
+                    );
 
 
                 function typeWord() {
@@ -796,7 +730,6 @@
                         wordIndex >=
                         words.length
                     ) {
-
 
                         if (
                             sentence.emoji
@@ -807,6 +740,7 @@
                                     sentence.emoji
                                 )
                             );
+
                         }
 
 
@@ -820,12 +754,14 @@
 
 
                         return;
+
                     }
 
 
-
                     const word =
-                        words[wordIndex];
+                        words[
+                            wordIndex
+                        ];
 
 
                     const wordContainer =
@@ -833,9 +769,6 @@
                             "span"
                         );
 
-
-
-                    /* First letter */
 
                     const firstLetter =
                         document.createElement(
@@ -858,9 +791,6 @@
                     );
 
 
-
-                    /* Remaining letters */
-
                     const remaining =
                         word.slice(1);
 
@@ -871,7 +801,6 @@
                     sentenceContainer.appendChild(
                         wordContainer
                     );
-
 
 
                     function typeLetter() {
@@ -898,6 +827,7 @@
 
 
                             return;
+
                         }
 
 
@@ -925,6 +855,7 @@
                             typeLetter,
                             45
                         );
+
                     }
 
 
@@ -943,10 +874,21 @@
         }
 
 
-
         /* =========================
            COUNTDOWN
         ========================= */
+
+        /*
+           TEST DATE
+
+           This is already in the past,
+           so the final page appears
+           immediately for testing.
+
+           Later change it to:
+
+           November 2, 2026 19:00:00
+        */
 
         const targetDate =
             new Date(
@@ -954,195 +896,254 @@
             ).getTime();
 
 
-
         const countdown =
-            setInterval(function () {
+            setInterval(
+                function () {
+
+                    const now =
+                        new Date()
+                            .getTime();
 
 
-                const now =
-                    new Date().getTime();
+                    const distance =
+                        targetDate -
+                        now;
 
 
-                const distance =
-                    targetDate - now;
+                    if (
+                        distance <= 0
+                    ) {
 
+                        clearInterval(
+                            countdown
+                        );
 
-
-                if (distance <= 0) {
-
-                    clearInterval(
-                        countdown
-                    );
-
-
-                    document
-                        .getElementById("days")
-                        .textContent = "00";
-
-
-                    document
-                        .getElementById("hours")
-                        .textContent = "00";
-
-
-                    document
-                        .getElementById("minutes")
-                        .textContent = "00";
-
-
-                    document
-                        .getElementById("seconds")
-                        .textContent = "00";
-
-
-
-                    /* Hide countdown */
-
-                    document
-                        .getElementById(
-                            "countdownPage"
-                        )
-                        .classList
-                        .add("hide");
-
-
-
-                    /* Show final page */
-
-                    setTimeout(function () {
 
                         document
                             .getElementById(
-                                "finalPage"
+                                "days"
+                            )
+                            .textContent =
+                            "00";
+
+
+                        document
+                            .getElementById(
+                                "hours"
+                            )
+                            .textContent =
+                            "00";
+
+
+                        document
+                            .getElementById(
+                                "minutes"
+                            )
+                            .textContent =
+                            "00";
+
+
+                        document
+                            .getElementById(
+                                "seconds"
+                            )
+                            .textContent =
+                            "00";
+
+
+                        /*
+                           Hide countdown
+                        */
+
+                        document
+                            .getElementById(
+                                "countdownPage"
                             )
                             .classList
-                            .add("show");
+                            .add(
+                                "hide"
+                            );
 
 
-                        /* Start message */
+                        /*
+                           Show final page
+                        */
 
-                        setTimeout(function () {
+                        setTimeout(
+                            function () {
 
-                            document
-                                .getElementById(
-                                    "message"
-                                )
-                                .classList
-                                .add("show");
-
-
-                            typeMessage();
-
-
-                            /* Start hearts */
-
-                            startHearts();
-
-                        }, 500);
+                                document
+                                    .getElementById(
+                                        "finalPage"
+                                    )
+                                    .classList
+                                    .add(
+                                        "show"
+                                    );
 
 
-                    }, 1000);
+                                /*
+                                   Try music
+                                */
+
+                                startMusic();
 
 
-                    return;
-                }
+                                /*
+                                   Start hearts
+                                */
+
+                                startHearts();
 
 
+                                /*
+                                   Start message
+                                */
 
-                const days =
-                    Math.floor(
-                        distance /
-                        (
-                            1000 *
-                            60 *
-                            60 *
-                            24
-                        )
-                    );
+                                setTimeout(
+                                    function () {
+
+                                        document
+                                            .getElementById(
+                                                "message"
+                                            )
+                                            .classList
+                                            .add(
+                                                "show"
+                                            );
 
 
-                const hours =
-                    Math.floor(
-                        (
-                            distance %
+                                        typeMessage();
+
+                                    },
+                                    500
+                                );
+
+
+                            },
+                            1000
+                        );
+
+
+                        return;
+
+                    }
+
+
+                    const days =
+                        Math.floor(
+                            distance /
                             (
                                 1000 *
                                 60 *
                                 60 *
                                 24
                             )
-                        ) /
-                        (
-                            1000 *
-                            60 *
-                            60
-                        )
-                    );
+                        );
 
 
-                const minutes =
-                    Math.floor(
-                        (
-                            distance %
+                    const hours =
+                        Math.floor(
+                            (
+                                distance %
+                                (
+                                    1000 *
+                                    60 *
+                                    60 *
+                                    24
+                                )
+                            ) /
                             (
                                 1000 *
                                 60 *
                                 60
                             )
-                        ) /
-                        (
-                            1000 *
-                            60
-                        )
-                    );
+                        );
 
 
-                const seconds =
-                    Math.floor(
-                        (
-                            distance %
+                    const minutes =
+                        Math.floor(
+                            (
+                                distance %
+                                (
+                                    1000 *
+                                    60 *
+                                    60
+                                )
+                            ) /
                             (
                                 1000 *
                                 60
                             )
-                        ) /
-                        1000
-                    );
+                        );
 
 
-
-                document
-                    .getElementById("days")
-                    .textContent =
-                    String(days)
-                        .padStart(2, "0");
-
-
-                document
-                    .getElementById("hours")
-                    .textContent =
-                    String(hours)
-                        .padStart(2, "0");
+                    const seconds =
+                        Math.floor(
+                            (
+                                distance %
+                                (
+                                    1000 *
+                                    60
+                                )
+                            ) /
+                            1000
+                        );
 
 
-                document
-                    .getElementById("minutes")
-                    .textContent =
-                    String(minutes)
-                        .padStart(2, "0");
+                    document
+                        .getElementById(
+                            "days"
+                        )
+                        .textContent =
+                        String(days)
+                            .padStart(
+                                2,
+                                "0"
+                            );
 
 
-                document
-                    .getElementById("seconds")
-                    .textContent =
-                    String(seconds)
-                        .padStart(2, "0");
+                    document
+                        .getElementById(
+                            "hours"
+                        )
+                        .textContent =
+                        String(hours)
+                            .padStart(
+                                2,
+                                "0"
+                            );
 
 
-            }, 1000);
+                    document
+                        .getElementById(
+                            "minutes"
+                        )
+                        .textContent =
+                        String(minutes)
+                            .padStart(
+                                2,
+                                "0"
+                            );
+
+
+                    document
+                        .getElementById(
+                            "seconds"
+                        )
+                        .textContent =
+                        String(seconds)
+                            .padStart(
+                                2,
+                                "0"
+                            );
+
+
+                },
+                1000
+            );
 
     </script>
-
 
 </body>
 
