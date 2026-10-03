@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Our Special Day</title>
+
+    <!-- Elegant Script Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Allura&display=swap"
+          rel="stylesheet">
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+
+        body {
+            font-family: Georgia, serif;
+            background: black;
+        }
+
+
+        /* =========================
+           COUNTDOWN PAGE
+        ========================= */
+
+        #countdownPage {
+
+            position: fixed;
+
+            inset: 0;
+
+            width: 100%;
+            height: 100%;
+
+            background-image: url("first.jpg");
+
+            background-size: cover;
+
+            background-position: center;
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: center;
+
+            align-items: center;
+
+            text-align: center;
+
+            color: white;
+
+            z-index: 2;
+
+            transition:
+                opacity 1.5s ease,
+                transform 1.5s ease;
+        }
+
+
+        #countdownPage.hide {
+
+            opacity: 0;
+
+            transform: scale(1.08);
+
+            pointer-events: none;
+        }
+
+
+        #title {
+
+            font-size: 48px;
+
+            margin-bottom: 30px;
+
+            text-shadow:
+                0 2px 10px black;
+
+            letter-spacing: 2px;
+        }
+
+
+        #timer {
+
+            display: flex;
+
+            gap: 25px;
+
+            font-size: 28px;
+
+            text-shadow:
+                0 2px 10px black;
+        }
+
+
+        .time-box {
+
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: center;
+        }
+
+
+        .number {
+
+            font-size: 45px;
+
+            font-weight: bold;
+        }
+
+
+        .label {
+
+            font-size: 15px;
+
+            margin-top: 5px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 2px;
+        }
+
+
+        /* =========================
+           FINAL PAGE
+        ========================= */
+
+        #finalPage {
+
+            position: fixed;
+
+            inset: 0;
+
+            width: 100%;
+            height: 100%;
+
+            background-image: url("final.jpg");
+
+            background-size: cover;
+
+            background-position: center;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            text-align: center;
+
+            padding: 40px;
+
+            opacity: 0;
+
+            transform: scale(1.08);
+
+            transition:
+                opacity 1.5s ease,
+                transform 1.5s ease;
+
+            z-index: 1;
+        }
+
+
+        #finalPage.show {
+
+            opacity: 1;
+
+            transform: scale(1);
+        }
+
+
+        /* =========================
+           MESSAGE
+        ========================= */
+
+        #message {
+
+            max-width: 900px;
+
+            max-height: 85vh;
+
+            overflow-y: auto;
+
+            font-family: "Allura", cursive;
+
+            font-size: 38px;
+
+            line-height: 1.5;
+
+            color: #800020;
+
+            text-shadow:
+                0 1px 2px rgba(255,255,255,0.4);
+
+            opacity: 0;
+
+            transform: translateY(25px);
+
+            transition:
+                opacity 1s ease,
+                transform 1s ease;
+        }
+
+
+        #message.show {
+
+            opacity: 1;
+
+            transform: translateY(0);
+        }
+
+
+        /* =========================
+           BIG FIRST LETTER
+        ========================= */
+
+        .first-letter {
+
+            color: black;
+
+            font-size: 1.65em;
+
+            font-weight: bold;
+        }
+
+
+        /* =========================
+           EMOJIS
+        ========================= */
+
+        .emoji {
+
+            font-family:
+                "Segoe UI Emoji",
+                "Apple Color Emoji",
+                "Noto Color Emoji",
+                sans-serif;
+
+            font-size: 1em;
+
+            color: initial;
+
+            margin-left: 5px;
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 600px) {
+
+            #title {
+                font-size: 34px;
+            }
+
+
+            #timer {
+
+                gap: 12px;
+
+                font-size: 20px;
+            }
+
+
+            .number {
+                font-size: 32px;
+            }
+
+
+            .label {
+                font-size: 11px;
+            }
+
+
+            #message {
+
+                font-size: 30px;
+
+                max-width: 95%;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         FIRST PAGE
+    ========================= -->
+
+    <div id="countdownPage">
+
+        <div id="title">
+            Our Special Day
+        </div>
+
+
+        <div id="timer">
+
+            <div class="time-box">
+
+                <div class="number" id="days">
+                    00
+                </div>
+
+                <div class="label">
+                    Days
+                </div>
+
+            </div>
+
+
+            <div class="time-box">
+
+                <div class="number" id="hours">
+                    00
+                </div>
+
+                <div class="label">
+                    Hours
+                </div>
+
+            </div>
+
+
+            <div class="time-box">
+
+                <div class="number" id="minutes">
+                    00
+                </div>
+
+                <div class="label">
+                    Minutes
+                </div>
+
+            </div>
+
+
+            <div class="time-box">
+
+                <div class="number" id="seconds">
+                    00
+                </div>
+
+                <div class="label">
+                    Seconds
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =========================
+         FINAL PAGE
+    ========================= -->
+
+    <div id="finalPage">
+
+        <div id="message"></div>
+
+    </div>
+
+
+
+    <script>
+
+
+        /* =========================
+           MESSAGE
+        ========================= */
+
+        const messageText = [
+
+            {
+                text:
+                    "Can you believe it? It's been 1 year of you putting up with me and me putting up with you ",
+                emoji:
+                    "laugh-heart"
+            },
+
+
+            {
+                text:
+                    "Nov 2nd - Our first anniversary together, Yassine.",
+                emoji:
+                    ""
+            },
+
+
+            {
+                text:
+                    "Honestly, it's been the best year of my life. You are my favorite silly person, my safe place, and my biggest headache in the best way.",
+                emoji:
+                    ""
+            },
+
+
+            {
+                text:
+                    "One year down, forever to go?",
+                emoji:
+                    ""
+            },
+
+
+            {
+                text:
+                    "I love you so much. Happy 1st anniversary, my king ",
+                emoji:
+                    "crown"
+            }
+
+        ];
+
+
+
+        /* =========================
+           EMOJI FUNCTION
+        ========================= */
+
+        function getEmoji(type) {
+
+            const emoji =
+                document.createElement("span");
+
+            emoji.className = "emoji";
+
+
+            if (type === "laugh-heart") {
+
+                emoji.textContent =
+                    String.fromCodePoint(
+                        0x1F602,
+                        0x2764,
+                        0xFE0F
+                    );
+            }
+
+
+            if (type === "crown") {
+
+                emoji.textContent =
+                    String.fromCodePoint(
+                        0x1F451
+                    );
+            }
+
+
+            return emoji;
+        }
+
+
+
+        /* =========================
+           TYPING ANIMATION
+        ========================= */
+
+        function typeMessage() {
+
+            const message =
+                document.getElementById("message");
+
+
+            message.innerHTML = "";
+
+
+            let sentenceIndex = 0;
+
+
+            function typeSentence() {
+
+                if (
+                    sentenceIndex >=
+                    messageText.length
+                ) {
+
+                    return;
+                }
+
+
+                const sentence =
+                    messageText[sentenceIndex];
+
+
+                const sentenceContainer =
+                    document.createElement("div");
+
+
+                sentenceContainer.style.marginBottom =
+                    "25px";
+
+
+                message.appendChild(
+                    sentenceContainer
+                );
+
+
+                let wordIndex = 0;
+
+
+                const words =
+                    sentence.text.split(" ");
+
+
+
+                function typeWord() {
+
+                    if (
+                        wordIndex >=
+                        words.length
+                    ) {
+
+
+                        /* Add emoji after sentence */
+
+                        if (sentence.emoji) {
+
+                            sentenceContainer.appendChild(
+                                getEmoji(
+                                    sentence.emoji
+                                )
+                            );
+                        }
+
+
+                        sentenceIndex++;
+
+
+                        setTimeout(
+                            typeSentence,
+                            700
+                        );
+
+
+                        return;
+                    }
+
+
+
+                    const word =
+                        words[wordIndex];
+
+
+                    const wordContainer =
+                        document.createElement("span");
+
+
+
+                    /* First letter */
+
+                    const firstLetter =
+                        document.createElement("span");
+
+
+                    firstLetter.className =
+                        "first-letter";
+
+
+                    firstLetter.textContent =
+                        word
+                            .charAt(0)
+                            .toUpperCase();
+
+
+                    wordContainer.appendChild(
+                        firstLetter
+                    );
+
+
+
+                    /* Remaining letters */
+
+                    const remaining =
+                        word.slice(1);
+
+
+                    let letterIndex = 0;
+
+
+                    sentenceContainer.appendChild(
+                        wordContainer
+                    );
+
+
+
+                    function typeLetter() {
+
+                        if (
+                            letterIndex >=
+                            remaining.length
+                        ) {
+
+
+                            sentenceContainer.appendChild(
+                                document.createTextNode(" ")
+                            );
+
+
+                            wordIndex++;
+
+
+                            setTimeout(
+                                typeWord,
+                                80
+                            );
+
+
+                            return;
+                        }
+
+
+                        const letter =
+                            document.createElement("span");
+
+
+                        letter.textContent =
+                            remaining[letterIndex];
+
+
+                        wordContainer.appendChild(
+                            letter
+                        );
+
+
+                        letterIndex++;
+
+
+                        setTimeout(
+                            typeLetter,
+                            45
+                        );
+                    }
+
+
+                    typeLetter();
+
+                }
+
+
+                typeWord();
+
+            }
+
+
+            typeSentence();
+
+        }
+
+
+
+        /* =========================
+           COUNTDOWN
+        ========================= */
+
+        const targetDate =
+          new Date(
+        "October 3, 2026 13:00:00").getTime();
+
+
+
+        const countdown =
+            setInterval(function () {
+
+
+                const now =
+                    new Date().getTime();
+
+
+                const distance =
+                    targetDate - now;
+
+
+
+                if (distance <= 0) {
+
+                    clearInterval(countdown);
+
+
+                    document
+                        .getElementById("days")
+                        .textContent = "00";
+
+
+                    document
+                        .getElementById("hours")
+                        .textContent = "00";
+
+
+                    document
+                        .getElementById("minutes")
+                        .textContent = "00";
+
+
+                    document
+                        .getElementById("seconds")
+                        .textContent = "00";
+
+
+
+                    /* Hide countdown */
+
+                    document
+                        .getElementById("countdownPage")
+                        .classList
+                        .add("hide");
+
+
+
+                    /* Show final page */
+
+                    setTimeout(function () {
+
+                        document
+                            .getElementById("finalPage")
+                            .classList
+                            .add("show");
+
+
+                        /* Start message */
+
+                        setTimeout(function () {
+
+                            document
+                                .getElementById("message")
+                                .classList
+                                .add("show");
+
+
+                            typeMessage();
+
+                        }, 500);
+
+
+                    }, 1000);
+
+
+                    return;
+                }
+
+
+
+                const days =
+                    Math.floor(
+                        distance /
+                        (1000 * 60 * 60 * 24)
+                    );
+
+
+                const hours =
+                    Math.floor(
+                        (distance %
+                            (1000 * 60 * 60 * 24)
+                        ) /
+                        (1000 * 60 * 60)
+                    );
+
+
+                const minutes =
+                    Math.floor(
+                        (distance %
+                            (1000 * 60 * 60)
+                        ) /
+                        (1000 * 60)
+                    );
+
+
+                const seconds =
+                    Math.floor(
+                        (distance %
+                            (1000 * 60)
+                        ) /
+                        1000
+                    );
+
+
+
+                document
+                    .getElementById("days")
+                    .textContent =
+                    String(days).padStart(2, "0");
+
+
+                document
+                    .getElementById("hours")
+                    .textContent =
+                    String(hours).padStart(2, "0");
+
+
+                document
+                    .getElementById("minutes")
+                    .textContent =
+                    String(minutes).padStart(2, "0");
+
+
+                document
+                    .getElementById("seconds")
+                    .textContent =
+                    String(seconds).padStart(2, "0");
+
+
+            }, 1000);
+
+    </script>
+
+
+</body>
+
+</html>
